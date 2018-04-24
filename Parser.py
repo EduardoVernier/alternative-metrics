@@ -21,4 +21,9 @@ def natural_sort(l):
 
 
 def list_techniques():
-    return natural_sort(os.listdir(rectangle_dir))
+    list = natural_sort(os.listdir(rectangle_dir))
+    if 'IncrementalLayoutWithMoves' in list:
+        list.remove('IncrementalLayoutWithMoves')
+    if 'IncrementalLayoutWithoutMoves' in list:
+        list.remove('IncrementalLayoutWithoutMoves')
+    return list
