@@ -2,6 +2,7 @@ import sys
 import Correlation
 import UnavoidableEnvelope
 import UnavoidableMovement
+import DeltaMetrics
 
 action = sys.argv[1]
 
@@ -24,3 +25,11 @@ elif action == 'unavoidable-boxplots':
 elif action == 'unavoidable-matrix':
     dataset_ids = sys.argv[2:]
     UnavoidableMovement.unavoidable_matrix(dataset_ids)
+
+elif action == 'delta-ratio-matrix':
+    dataset_ids = sys.argv[2:]
+    DeltaMetrics.delta_ratio_matrix(dataset_ids)
+
+elif action == 'delta-diff-matrix':
+    dataset_ids = sys.argv[2:]
+    DeltaMetrics.delta_diff_matrix(dataset_ids)
