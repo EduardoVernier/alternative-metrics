@@ -31,6 +31,7 @@ def delta_ratio_matrix(dataset_ids):
     MatrixPlot.plot_matrix(matrix, dataset_ids, technique_list, column_independent=True, title='Delta ratio')
     return None
 
+
 #  mod = 1 - abs(delta_vis - delta_data)
 def delta_diff_matrix(dataset_ids):
     matrix = []

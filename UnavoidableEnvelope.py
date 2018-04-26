@@ -10,7 +10,7 @@ def unavoidable_envelope():
     h_array = np.array([])
     a_array = np.array([])
 
-    n_samples = 100
+    n_samples = 20
     for w in np.linspace(0.000001, 1, n_samples, endpoint=False):
         for h in np.linspace(0.000001, 1, n_samples, endpoint=False):
             for a in np.linspace(0.000001, 1, n_samples, endpoint=False):

@@ -3,6 +3,11 @@ import math
 import scipy
 
 
+# Aspect ratio
+def compute_aspect_ratios(t):
+    return t[['w', 'h']].min(axis=1) / t[['w', 'h']].max(axis=1)
+
+
 # delta_vis has the same definition as the normalized corner travel from the vis18 paper
 def compute_delta_vis(t0, t1):
     base_width = (t0['x'] + t0['w']).max()

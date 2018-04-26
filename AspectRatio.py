@@ -1,6 +1,6 @@
-import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.patheffects as pe
+import numpy as np
 
 import Metrics
 import Parser
@@ -20,12 +20,9 @@ def plot_time_boxplot(dataset_id):
 
         data = []
         history = Parser.parse_rectangles(technique_id, dataset_id)
-        for revision in range(len(history) - 1):
-            un_mov = Metrics.compute_unavoidable_movement(history[revision], history[revision + 1])
-            delta_vis = Metrics.compute_delta_vis(history[revision], history[revision + 1])
-
-            diff = delta_vis - un_mov
-            data.append(diff)
+        for revision in range(len(history)):
+            ratios = Metrics.compute_aspect_ratios(history[revision])
+            data.append(ratios)
 
         bp = ax.boxplot(data, whis=[5, 95], showfliers=False, patch_artist=True, widths=1)
 
@@ -82,24 +79,22 @@ def style_boxplot(bp, fig, ax, n_revisions):
     ax.tick_params(axis='y', which='both', right='off', left='on', direction='out')
 
 
-def unavoidable_matrix(dataset_ids):
+def plot_ar_matrix(dataset_ids):
     matrix = []
     for dataset_id in dataset_ids:
         dataset_values = []
         for technique_id in technique_list:
             history = Parser.parse_rectangles(technique_id, dataset_id)
-            all_unavoidable = np.array([])
+            all_ratios = np.array([])
             for revision in range(len(history) - 1):
-                un_mov = Metrics.compute_unavoidable_movement(history[revision], history[revision + 1])
-                delta_vis = Metrics.compute_delta_vis(history[revision], history[revision + 1])
+                ratios = Metrics.compute_aspect_ratios(history[revision])
+                all_ratios = np.append(all_ratios, ratios.values)
 
-                diff = delta_vis - un_mov
-                all_unavoidable = np.append(all_unavoidable, diff.values)
-
-            dataset_values.append(all_unavoidable.mean())
-            print(Globals.acronyms[technique_id], dataset_id, all_unavoidable.mean())
+            dataset_values.append(all_ratios.mean())
+            print(Globals.acronyms[technique_id], dataset_id, all_ratios.mean())
         matrix.append(dataset_values)
 
     matrix = np.array(matrix).transpose()
-    MatrixPlot.plot_matrix(matrix, dataset_ids, technique_list, title='Unavoidable Movement')
+    MatrixPlot.plot_matrix(matrix, dataset_ids, technique_list, column_independent=False, title='Aspect Ratios')
+    MatrixPlot.plot_matrix(matrix, dataset_ids, technique_list, column_independent=True, title='Aspect Ratios')
     return None
