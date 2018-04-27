@@ -4,7 +4,7 @@ import numpy as np
 import Globals
 
 
-def plot_matrix(matrix, dataset_ids, technique_ids, column_independent=False, invert_colormap=False, title=None, filename=None):
+def plot(matrix, dataset_ids, technique_ids, column_independent=False, invert_colormap=False, title=None, filename=None):
     fig = plt.figure()
     ax = fig.add_subplot(111)
 
@@ -19,7 +19,6 @@ def plot_matrix(matrix, dataset_ids, technique_ids, column_independent=False, in
         # All column share same colormap range
         mat = ax.matshow(matrix, cmap=plt.cm.viridis)
         fig.colorbar(mat)
-
 
     # Ticks, labels and grids
     ax.set_xticklabels(dataset_ids, rotation='vertical')

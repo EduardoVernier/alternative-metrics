@@ -27,8 +27,8 @@ def delta_ratio_matrix(dataset_ids):
         matrix.append(dataset_values)
 
     matrix = np.array(matrix).transpose()
-    MatrixPlot.plot_matrix(matrix, dataset_ids, technique_list, column_independent=False, title='Delta ratio')
-    MatrixPlot.plot_matrix(matrix, dataset_ids, technique_list, column_independent=True, title='Delta ratio')
+    MatrixPlot.plot(matrix, dataset_ids, technique_list, column_independent=False, title='Delta ratio')
+    MatrixPlot.plot(matrix, dataset_ids, technique_list, column_independent=True, title='Delta ratio')
     return None
 
 
@@ -51,5 +51,5 @@ def delta_diff_matrix(dataset_ids):
         matrix.append(dataset_values)
 
     matrix = np.array(matrix).transpose()
-    MatrixPlot.plot_matrix(matrix, dataset_ids, technique_list, title='Delta diff')
+    MatrixPlot.plot(matrix, dataset_ids, technique_list, title='Delta diff')
     return None

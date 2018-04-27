@@ -1,6 +1,7 @@
 import sys
 import os
 
+import Globals
 import Correlation
 import UnavoidableEnvelope
 import UnavoidableMovement
@@ -10,8 +11,8 @@ import AspectRatio
 action = sys.argv[1]
 
 # Create dir to store plots
-base_path = 'plots/' + action + '/'
-os.makedirs(base_path, exist_ok=True)
+Globals.plot_subdir = 'plots/' + action + '/'
+os.makedirs(Globals.plot_subdir, exist_ok=True)
 
 # Choose which vis to create
 # Correlation based

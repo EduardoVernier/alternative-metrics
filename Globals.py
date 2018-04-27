@@ -12,3 +12,5 @@ acronyms = {
     'SquarifiedTreeMap': 'SQR',
     'StripTreeMap': 'STR'
 }
+
+plot_subdir = ''
