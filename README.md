@@ -1,5 +1,13 @@
 # alternative-metrics
 
+### Dependencies
+```
+sudo apt install python3-pip
+pip install --upgrade pip
+python3 -m pip install --user numpy scipy matplotlib ipython jupyter pandas sympy nose
+sudo apt-get install python3-tk
+```
+
 ### Pearson correlation
 
 ```
