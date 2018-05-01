@@ -5,6 +5,7 @@ import os
 
 import Globals
 
+
 def parse_rectangles(technique_id, dataset_id):
     path = Globals.rectangle_dir + '/' + technique_id + '/' + dataset_id
     files = [filename for filename in glob.iglob(path + '**/*.rect', recursive=True)]

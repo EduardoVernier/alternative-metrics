@@ -4,10 +4,11 @@ import numpy as np
 import Globals
 
 
-def plot(matrix, dataset_ids, technique_ids, shared_cm, cell_text, title=None, show=False):
+def plot(matrix, dataset_ids, technique_ids, shared_cm, cell_text, invert_colormap=False, title=None, show=False):
     fig = plt.figure()
     ax = fig.add_subplot(111)
 
+    colormap = plt.cm.viridis_r if invert_colormap else plt.cm.viridis
     if shared_cm:
         # The colormap range is independent for each column
         for col in range(matrix.shape[1]):
@@ -15,10 +16,10 @@ def plot(matrix, dataset_ids, technique_ids, shared_cm, cell_text, title=None, s
             m = np.ones_like(matrix)
             m[:, col] = 0
             masked = np.ma.masked_array(matrix, m)
-            ax.matshow(masked, cmap=plt.cm.viridis)
+            ax.matshow(masked, cmap=colormap)
     else:
         # All column share same colormap range
-        mat = ax.matshow(matrix, cmap=plt.cm.viridis)
+        mat = ax.matshow(matrix, cmap=colormap)
         fig.colorbar(mat)
 
     # Ticks, labels and grids

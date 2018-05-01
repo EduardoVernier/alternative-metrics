@@ -52,19 +52,23 @@ def unavoidable_matrix(dataset_ids):
     MatrixPlot.plot(matrix, dataset_ids, technique_list,
                     shared_cm=False,
                     cell_text=True,
+                    invert_colormap=True,
                     title='Unavoidable')
 
     MatrixPlot.plot(matrix, dataset_ids, technique_list,
                     shared_cm=True,
                     cell_text=True,
+                    invert_colormap=True,
                     title='Unavoidable')
 
     MatrixPlot.plot(matrix, dataset_ids, technique_list,
                     shared_cm=False,
                     cell_text=False,
+                    invert_colormap=True,
                     title='Unavoidable')
 
     MatrixPlot.plot(matrix, dataset_ids, technique_list,
                     shared_cm=True,
                     cell_text=False,
+                    invert_colormap=True,
                     title='Unavoidable')
