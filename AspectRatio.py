@@ -43,6 +43,14 @@ def plot_ar_matrix(dataset_ids):
         matrix.append(dataset_values)
 
     matrix = np.array(matrix).transpose()
-    MatrixPlot.plot(matrix, dataset_ids, technique_list, column_independent=False, title='Aspect Ratios')
-    MatrixPlot.plot(matrix, dataset_ids, technique_list, column_independent=True, title='Aspect Ratios')
+    MatrixPlot.plot(matrix, dataset_ids, technique_list,
+                    column_independent=False,
+                    title='Aspect Ratios',
+                    filename=Globals.plot_subdir + 'ar-shared.png')
+
+    MatrixPlot.plot(matrix, dataset_ids, technique_list,
+                    column_independent=True,
+                    title='Aspect Ratios',
+                    filename=Globals.plot_subdir + 'ar-independent.png')
+
     return None

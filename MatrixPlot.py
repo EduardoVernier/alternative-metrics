@@ -54,6 +54,6 @@ def plot(matrix, dataset_ids, technique_ids, column_independent=False, invert_co
         ax.text(-2, y_end / 2, title, color='black', ha='center', va='center', fontsize=12, rotation=90)
 
     if filename is not None:
-        fig.savefig(filename, dpi=600)
+        fig.savefig(filename, dpi=500)
     else:
         plt.show()

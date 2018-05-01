@@ -8,6 +8,7 @@ from matplotlib import cm
 import Metrics
 import Parser
 import Globals
+import MatrixPlot
 
 # Use this dummy technique list for now
 # technique_list = ['SliceAndDice', 'SquarifiedTreeMap']
@@ -15,7 +16,6 @@ technique_list = Parser.list_techniques()
 
 
 def scatter(dataset_id):
-
     fig, axs = plt.subplots(int(len(technique_list)/2), 2, sharex=True, sharey=True, figsize=(20, 44))
 
     xlim = 0
@@ -80,8 +80,9 @@ def scatter(dataset_id):
         ax.set_xlim(xmin=0, xmax=xlim)
         ax.set_ylim(ymin=0)
 
-    plt.show()
-    return None
+    fig.savefig(Globals.plot_subdir + 'scatter-' + dataset_id + '.png', dpi=500)
+    # plt.show()
+    return
 
 
 def make_colors(vals, cmap):
@@ -115,45 +116,14 @@ def pearson_matrix(dataset_ids):
         r_matrix.append(dataset_values)
 
     r_matrix = np.array(r_matrix).transpose()
-    plot_matrix(r_matrix, dataset_ids, technique_list)
-    return None
 
+    MatrixPlot.plot(r_matrix, dataset_ids, technique_list,
+                    title="Pearson Correlation",
+                    column_independent=False,
+                    filename=Globals.plot_subdir + 'correlation-shared.png')
 
-def plot_matrix(matrix, dataset_ids, technique_ids):
-
-    fig = plt.figure()
-    ax = fig.add_subplot(111)
-    mat = ax.matshow(matrix, cmap=plt.cm.viridis)
-
-    # Ticks, labels and grids
-    ax.set_xticklabels(dataset_ids, rotation='vertical')
-    ax.set_xticks(range(len(dataset_ids)), minor=False)
-    ax.set_yticklabels([Globals.acronyms[t] for t in technique_ids])
-    ax.set_yticks(range(len(technique_ids)), minor=False)
-    ax.set_xticks([x - 0.5 for x in plt.gca().get_xticks()][1:], minor='true')
-    ax.set_yticks([y - 0.5 for y in plt.gca().get_yticks()][1:], minor='true')
-    plt.grid(which='minor', color='#999999', linestyle='-', linewidth=1)
-    ax.tick_params(axis=u'both', which=u'both', length=0)
-
-    # Add the text
-    x_start = 0.0
-    x_end = len(dataset_ids)
-    y_start = 0.0
-    y_end = len(technique_ids)
-
-    jump_x = (x_end - x_start) / (2.0 * len(dataset_ids))
-    jump_y = (y_end - y_start) / (2.0 * len(technique_ids))
-    x_positions = np.linspace(start=x_start-0.5, stop=x_end-0.5, num=len(dataset_ids), endpoint=False)
-    y_positions = np.linspace(start=y_start-0.5, stop=y_end-0.5, num=len(technique_ids), endpoint=False)
-
-    for y_index, y in enumerate(y_positions):
-        for x_index, x in enumerate(x_positions):
-            label = "{0:.3f}".format(matrix[y_index][x_index]).lstrip('0')
-            text_x = x + jump_x
-            text_y = y + jump_y
-            ax.text(text_x, text_y, label, color='black', ha='center', va='center', fontsize=9)
-
-    fig.colorbar(mat)
-    fig.tight_layout()
-    #fig.savefig('matrices/matrix-'+ metric_id +'.png', dpi=600)
-    plt.show()
+    MatrixPlot.plot(r_matrix, dataset_ids, technique_list,
+                    title="Pearson Correlation",
+                    column_independent=True,
+                    filename=Globals.plot_subdir + 'correlation-independent.png')
+    return

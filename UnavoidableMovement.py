@@ -24,7 +24,9 @@ def plot_time_boxplot(dataset_id):
 
         data.append(technique_results)
 
-    TimeBoxplot.plot(data, technique_list)
+    TimeBoxplot.plot(data, technique_list,
+                     title='Unavoidable movement',
+                     filename=Globals.plot_subdir + 'unavoidable-bp-' + dataset_id + '.png')
     return
 
 
@@ -47,5 +49,14 @@ def unavoidable_matrix(dataset_ids):
         matrix.append(dataset_values)
 
     matrix = np.array(matrix).transpose()
-    MatrixPlot.plot(matrix, dataset_ids, technique_list, title='Unavoidable Movement')
+
+    MatrixPlot.plot(matrix, dataset_ids, technique_list,
+                    column_independent=False,
+                    title='Unavoidable Movement',
+                    filename=Globals.plot_subdir + 'unavoidable-shared.png')
+
+    MatrixPlot.plot(matrix, dataset_ids, technique_list,
+                    column_independent=False,
+                    title='Unavoidable Movement',
+                    filename=Globals.plot_subdir + 'unavoidable-independent.png')
     return
