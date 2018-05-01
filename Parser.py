@@ -3,10 +3,10 @@ import pandas as pd
 import re
 import os
 
-rectangle_dir = '/home/eduardo/Desktop/baseline-metric/rectangles'
+import Globals
 
 def parse_rectangles(technique_id, dataset_id):
-    path = rectangle_dir + '/' + technique_id + '/' + dataset_id
+    path = Globals.rectangle_dir + '/' + technique_id + '/' + dataset_id
     files = [filename for filename in glob.iglob(path + '**/*.rect', recursive=True)]
     files = natural_sort(files)
     # Read each file into a dataframe
@@ -21,7 +21,7 @@ def natural_sort(l):
 
 
 def list_techniques():
-    list = natural_sort(os.listdir(rectangle_dir))
+    list = natural_sort(os.listdir(Globals.rectangle_dir))
     if 'IncrementalLayoutWithMoves' in list:
         list.remove('IncrementalLayoutWithMoves')
     if 'IncrementalLayoutWithoutMoves' in list:

@@ -13,4 +13,5 @@ acronyms = {
     'StripTreeMap': 'STR'
 }
 
+rectangle_dir = '/home/eduardo/Desktop/baseline-metric/rectangles'
 plot_subdir = ''
