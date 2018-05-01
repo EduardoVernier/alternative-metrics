@@ -4,8 +4,10 @@ import Metrics
 import Parser
 import Globals
 import MatrixPlot
+import TimeBoxplot
 
 technique_list = Parser.list_techniques()
+
 
 # from the eurovis proposal
 #  ratio = (1-delta_vis)/(1-delta_data)
@@ -29,7 +31,25 @@ def delta_ratio_matrix(dataset_ids):
     matrix = np.array(matrix).transpose()
     MatrixPlot.plot(matrix, dataset_ids, technique_list, column_independent=False, title='Delta ratio')
     MatrixPlot.plot(matrix, dataset_ids, technique_list, column_independent=True, title='Delta ratio')
-    return None
+    return
+
+
+def delta_ratio_boxplots(dataset_id):
+    data = []
+    for i, technique_id in enumerate(technique_list):
+        technique_data = []
+        history = Parser.parse_rectangles(technique_id, dataset_id)
+        for revision in range(len(history) - 1):
+            delta_vis = Metrics.compute_delta_vis(history[revision], history[revision + 1])
+            delta_data = Metrics.compute_delta_data(history[revision], history[revision + 1])
+            ratios = (1 - delta_vis) / (1 - delta_data)
+            technique_data.append(ratios)
+        data.append(technique_data)
+
+    TimeBoxplot.plot(data, technique_list,
+                     title="Delta Ratio - " + dataset_id,
+                     filename=Globals.plot_subdir + 'delta-ratio-' + dataset_id + '.png')
+    return
 
 
 #  mod = 1 - abs(delta_vis - delta_data)
@@ -52,4 +72,22 @@ def delta_diff_matrix(dataset_ids):
 
     matrix = np.array(matrix).transpose()
     MatrixPlot.plot(matrix, dataset_ids, technique_list, title='Delta diff')
-    return None
+    return
+
+
+def delta_diff_boxplots(dataset_id):
+    data = []
+    for i, technique_id in enumerate(technique_list):
+        technique_data = []
+        history = Parser.parse_rectangles(technique_id, dataset_id)
+        for revision in range(len(history) - 1):
+            delta_vis = Metrics.compute_delta_vis(history[revision], history[revision + 1])
+            delta_data = Metrics.compute_delta_data(history[revision], history[revision + 1])
+            diffs = 1 - abs(delta_vis - delta_data)
+            technique_data.append(diffs)
+        data.append(technique_data)
+
+    TimeBoxplot.plot(data, technique_list,
+                     title="Delta diff - " + dataset_id,
+                     filename=Globals.plot_subdir + 'delta-diff-' + dataset_id + '.png')
+    return

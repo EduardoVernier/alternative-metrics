@@ -42,9 +42,17 @@ elif action == 'delta-ratio-matrix':
     dataset_ids = sys.argv[2:]
     DeltaMetrics.delta_ratio_matrix(dataset_ids)
 
+elif action == 'delta-ratio-boxplots':
+    dataset_id = sys.argv[2]
+    DeltaMetrics.delta_ratio_boxplots(dataset_id)
+
 elif action == 'delta-diff-matrix':
     dataset_ids = sys.argv[2:]
     DeltaMetrics.delta_diff_matrix(dataset_ids)
+
+elif action == 'delta-diff-boxplots':
+    dataset_id = sys.argv[2]
+    DeltaMetrics.delta_diff_boxplots(dataset_id)
 
 # Aspect Ratio
 elif action == 'ar-boxplots':

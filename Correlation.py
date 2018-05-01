@@ -89,8 +89,8 @@ def make_colors(vals, cmap):
     colors = [cm.ScalarMappable(norm=norm, cmap=cmap).to_rgba(val) for val in vals]
     return colors
 
-def pearson_matrix(dataset_ids):
 
+def pearson_matrix(dataset_ids):
     r_matrix = []
     for dataset_id in dataset_ids:
         dataset_values = []
