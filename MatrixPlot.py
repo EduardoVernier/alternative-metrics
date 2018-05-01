@@ -4,15 +4,16 @@ import numpy as np
 import Globals
 
 
-def plot(matrix, dataset_ids, technique_ids, column_independent=False, invert_colormap=False, title=None, filename=None):
+def plot(matrix, dataset_ids, technique_ids, shared_cm, cell_text, title=None, show=False):
     fig = plt.figure()
     ax = fig.add_subplot(111)
 
-    if column_independent == True:
+    if shared_cm:
         # The colormap range is independent for each column
         for col in range(matrix.shape[1]):
-            m = np.zeros_like(matrix)
-            m[:, col] = 1
+            # Make all rows invalid (fill with 1) except the target one (col)
+            m = np.ones_like(matrix)
+            m[:, col] = 0
             masked = np.ma.masked_array(matrix, m)
             ax.matshow(masked, cmap=plt.cm.viridis)
     else:
@@ -30,30 +31,37 @@ def plot(matrix, dataset_ids, technique_ids, column_independent=False, invert_co
     plt.grid(which='minor', color='#999999', linestyle='-', linewidth=1)
     ax.tick_params(axis=u'both', which=u'both', length=0)
 
-    # Add the text
     x_start = 0.0
     x_end = len(dataset_ids)
     y_start = 0.0
     y_end = len(technique_ids)
 
-    jump_x = (x_end - x_start) / (2.0 * len(dataset_ids))
-    jump_y = (y_end - y_start) / (2.0 * len(technique_ids))
-    x_positions = np.linspace(start=x_start - 0.5, stop=x_end - 0.5, num=len(dataset_ids), endpoint=False)
-    y_positions = np.linspace(start=y_start - 0.5, stop=y_end - 0.5, num=len(technique_ids), endpoint=False)
+    # Add the text
+    if cell_text:
+        jump_x = (x_end - x_start) / (2.0 * len(dataset_ids))
+        jump_y = (y_end - y_start) / (2.0 * len(technique_ids))
+        x_positions = np.linspace(start=x_start - 0.5, stop=x_end - 0.5, num=len(dataset_ids), endpoint=False)
+        y_positions = np.linspace(start=y_start - 0.5, stop=y_end - 0.5, num=len(technique_ids), endpoint=False)
 
-    for y_index, y in enumerate(y_positions):
-        for x_index, x in enumerate(x_positions):
-            label = "{0:.3f}".format(matrix[y_index][x_index]).lstrip('0')
-            text_x = x + jump_x
-            text_y = y + jump_y
-            ax.text(text_x, text_y, label, color='black', ha='center', va='center', fontsize=9)
+        for y_index, y in enumerate(y_positions):
+            for x_index, x in enumerate(x_positions):
+                label = "{0:.3f}".format(matrix[y_index][x_index]).lstrip('0')
+                text_x = x + jump_x
+                text_y = y + jump_y
+                ax.text(text_x, text_y, label, color='black', ha='center', va='center', fontsize=5)
 
-    fig.tight_layout()
+    # fig.tight_layout()
 
     if title is not None:
-        ax.text(-2, y_end / 2, title, color='black', ha='center', va='center', fontsize=12, rotation=90)
+        ax.text(x_end / 2, y_end * 1.2, title, color='black', ha='center', va='center', fontsize=12)
 
-    if filename is not None:
-        fig.savefig(filename, dpi=500)
-    else:
+        filename = title.replace(' ', '').lower()
+        filename += '-'
+        filename += 'I' if shared_cm else 'S'
+        filename += '-'
+        filename += 'T' if cell_text else 'NT'
+        filename += '.png'
+        fig.savefig(Globals.plot_subdir + filename, dpi=500)
+
+    if show:
         plt.show()

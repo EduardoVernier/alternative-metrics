@@ -92,7 +92,7 @@ def make_colors(vals, cmap):
 
 
 def pearson_matrix(dataset_ids):
-    r_matrix = []
+    matrix = []
     for dataset_id in dataset_ids:
         dataset_values = []
         for technique_id in technique_list:
@@ -113,17 +113,26 @@ def pearson_matrix(dataset_ids):
 
             dataset_values.append(r_value)
             print(Globals.acronyms[technique_id], dataset_id, r_value)
-        r_matrix.append(dataset_values)
+        matrix.append(dataset_values)
 
-    r_matrix = np.array(r_matrix).transpose()
+    matrix = np.array(matrix).transpose()
 
-    MatrixPlot.plot(r_matrix, dataset_ids, technique_list,
-                    title="Pearson Correlation",
-                    column_independent=False,
-                    filename=Globals.plot_subdir + 'correlation-shared.png')
+    MatrixPlot.plot(matrix, dataset_ids, technique_list,
+                    shared_cm=False,
+                    cell_text=True,
+                    title='Pearson')
 
-    MatrixPlot.plot(r_matrix, dataset_ids, technique_list,
-                    title="Pearson Correlation",
-                    column_independent=True,
-                    filename=Globals.plot_subdir + 'correlation-independent.png')
-    return
+    MatrixPlot.plot(matrix, dataset_ids, technique_list,
+                    shared_cm=True,
+                    cell_text=True,
+                    title='Pearson')
+
+    MatrixPlot.plot(matrix, dataset_ids, technique_list,
+                    shared_cm=False,
+                    cell_text=False,
+                    title='Pearson')
+
+    MatrixPlot.plot(matrix, dataset_ids, technique_list,
+                    shared_cm=True,
+                    cell_text=False,
+                    title='Pearson')

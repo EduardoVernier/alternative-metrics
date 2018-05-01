@@ -26,8 +26,7 @@ def plot_time_boxplot(dataset_id):
 
     TimeBoxplot.plot(data, technique_list,
                      title='Unavoidable movement',
-                     filename=Globals.plot_subdir + 'unavoidable-bp-' + dataset_id + '.png')
-    return
+                     filename=Globals.plot_subdir + 'unavoidable-' + dataset_id + '.png')
 
 
 def unavoidable_matrix(dataset_ids):
@@ -51,12 +50,21 @@ def unavoidable_matrix(dataset_ids):
     matrix = np.array(matrix).transpose()
 
     MatrixPlot.plot(matrix, dataset_ids, technique_list,
-                    column_independent=False,
-                    title='Unavoidable Movement',
-                    filename=Globals.plot_subdir + 'unavoidable-shared.png')
+                    shared_cm=False,
+                    cell_text=True,
+                    title='Unavoidable')
 
     MatrixPlot.plot(matrix, dataset_ids, technique_list,
-                    column_independent=False,
-                    title='Unavoidable Movement',
-                    filename=Globals.plot_subdir + 'unavoidable-independent.png')
-    return
+                    shared_cm=True,
+                    cell_text=True,
+                    title='Unavoidable')
+
+    MatrixPlot.plot(matrix, dataset_ids, technique_list,
+                    shared_cm=False,
+                    cell_text=False,
+                    title='Unavoidable')
+
+    MatrixPlot.plot(matrix, dataset_ids, technique_list,
+                    shared_cm=True,
+                    cell_text=False,
+                    title='Unavoidable')

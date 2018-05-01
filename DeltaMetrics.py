@@ -31,15 +31,24 @@ def delta_ratio_matrix(dataset_ids):
     matrix = np.array(matrix).transpose()
 
     MatrixPlot.plot(matrix, dataset_ids, technique_list,
-                    column_independent=False,
-                    title='Delta ratio',
-                    filename=Globals.plot_subdir + 'delta-ratio-shared.png')
+                    shared_cm=False,
+                    cell_text=True,
+                    title='Delta ratio')
 
     MatrixPlot.plot(matrix, dataset_ids, technique_list,
-                    column_independent=True,
-                    title='Delta ratio',
-                    filename=Globals.plot_subdir + 'delta-ratio-independent.png')
-    return
+                    shared_cm=True,
+                    cell_text=True,
+                    title='Delta ratio')
+
+    MatrixPlot.plot(matrix, dataset_ids, technique_list,
+                    shared_cm=False,
+                    cell_text=False,
+                    title='Delta ratio')
+
+    MatrixPlot.plot(matrix, dataset_ids, technique_list,
+                    shared_cm=True,
+                    cell_text=False,
+                    title='Delta ratio')
 
 
 def delta_ratio_boxplots(dataset_id):
@@ -56,8 +65,7 @@ def delta_ratio_boxplots(dataset_id):
 
     TimeBoxplot.plot(data, technique_list,
                      title="Delta Ratio - " + dataset_id,
-                     filename=Globals.plot_subdir + 'delta-ratio-' + dataset_id + '.png')
-    return
+                     filename=Globals.plot_subdir + 'deltaratio-' + dataset_id + '.png')
 
 
 #  mod = 1 - abs(delta_vis - delta_data)
@@ -79,16 +87,26 @@ def delta_diff_matrix(dataset_ids):
         matrix.append(dataset_values)
 
     matrix = np.array(matrix).transpose()
-    MatrixPlot.plot(matrix, dataset_ids, technique_list,
-                    column_independent=False,
-                    title='Delta diff',
-                    filename=Globals.plot_subdir + 'delta-diff-shared.png')
 
     MatrixPlot.plot(matrix, dataset_ids, technique_list,
-                    column_independent=True,
-                    title='Delta diff',
-                    filename=Globals.plot_subdir + 'delta-diff-independent.png')
-    return
+                    shared_cm=False,
+                    cell_text=True,
+                    title='Delta diff')
+
+    MatrixPlot.plot(matrix, dataset_ids, technique_list,
+                    shared_cm=True,
+                    cell_text=True,
+                    title='Delta diff')
+
+    MatrixPlot.plot(matrix, dataset_ids, technique_list,
+                    shared_cm=False,
+                    cell_text=False,
+                    title='Delta diff')
+
+    MatrixPlot.plot(matrix, dataset_ids, technique_list,
+                    shared_cm=True,
+                    cell_text=False,
+                    title='Delta diff')
 
 
 def delta_diff_boxplots(dataset_id):
@@ -105,5 +123,4 @@ def delta_diff_boxplots(dataset_id):
 
     TimeBoxplot.plot(data, technique_list,
                      title="Delta diff - " + dataset_id,
-                     filename=Globals.plot_subdir + 'delta-diff-' + dataset_id + '.png')
-    return
+                     filename=Globals.plot_subdir + 'deltadiff-' + dataset_id + '.png')
