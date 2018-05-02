@@ -14,7 +14,7 @@ def plot(matrix, dataset_ids, technique_ids, shared_cm=True, cell_text=False, in
         # All column share same colormap range
         mat = ax.matshow(matrix, cmap=colormap)
         if cell_text is False:
-            fig.colorbar(mat, orientation="horizontal", pad=0.2)
+            fig.colorbar(mat, orientation="horizontal", pad=0.1)
 
     else:
         # The colormap range is independent for each column
