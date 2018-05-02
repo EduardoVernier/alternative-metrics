@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
 
 import Globals
 
@@ -56,13 +57,22 @@ def plot(matrix, dataset_ids, technique_ids, shared_cm, cell_text, invert_colorm
     if title is not None:
         ax.text(x_end / 2, y_end * 1.2, title, color='black', ha='center', va='center', fontsize=12)
 
-        filename = title.replace(' ', '').lower()
-        filename += '-'
-        filename += 'I' if shared_cm else 'S'
-        filename += '-'
-        filename += 'T' if cell_text else 'NT'
-        filename += '.png'
-        fig.savefig(Globals.plot_subdir + filename, dpi=500)
+        csv_name = Globals.plot_subdir + title.replace(' ', '').lower() + '.csv'
+        save_as_cvs(matrix, dataset_ids, technique_ids, csv_name)
+
+        fig_name = title.replace(' ', '').lower()
+        fig_name += '-'
+        fig_name += 'I' if shared_cm else 'S'
+        fig_name += '-'
+        fig_name += 'T' if cell_text else 'NT'
+        fig_name += '.png'
+        fig.savefig(Globals.plot_subdir + fig_name, dpi=500)
 
     if show:
         plt.show()
+
+
+def save_as_cvs(matrix, dataset_ids, technique_ids, filename):
+    df_dict = dict(zip(dataset_ids, np.array(matrix).transpose()))
+    df = pd.DataFrame(data=df_dict, index=technique_ids)
+    df.to_csv(filename)
