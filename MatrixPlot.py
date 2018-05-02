@@ -14,7 +14,8 @@ def plot(matrix, dataset_ids, technique_ids, shared_cm=True, cell_text=False, in
         # All column share same colormap range
         mat = ax.matshow(matrix, cmap=colormap)
         if cell_text is False:
-            fig.colorbar(mat)
+            fig.colorbar(mat, orientation="horizontal", pad=0.2)
+
     else:
         # The colormap range is independent for each column
         for col in range(matrix.shape[1]):
@@ -57,14 +58,15 @@ def plot(matrix, dataset_ids, technique_ids, shared_cm=True, cell_text=False, in
     # fig.tight_layout()
 
     if title is not None:
-        ax.text(x_end / 2, y_end * 1.2, title, color='black', ha='center', va='center', fontsize=12)
+        # ax.text(x_end / 2, y_end * 1.2, title, color='black', ha='center', va='center', fontsize=12)
+        ax.set_xlabel(title)
 
         csv_name = Globals.plot_subdir + title.replace(' ', '').lower() + '.csv'
         save_as_cvs(matrix, dataset_ids, technique_ids, csv_name)
 
         fig_name = title.replace(' ', '').lower()
         fig_name += '-'
-        fig_name += 'I' if shared_cm else 'S'
+        fig_name += 'S' if shared_cm else 'I'
         fig_name += '-'
         fig_name += 'T' if cell_text else 'NT'
         fig_name += '.png'
