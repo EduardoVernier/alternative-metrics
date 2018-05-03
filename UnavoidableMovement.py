@@ -9,6 +9,7 @@ import TimeBoxplot
 #technique_list = ['SliceAndDice', 'SquarifiedTreeMap']
 technique_list = Parser.list_techniques()
 
+
 def plot_time_boxplot(dataset_id):
     # data 1st level = technique, 2nd = list of revisions, 3rd = list of observations
     data = []
@@ -19,7 +20,7 @@ def plot_time_boxplot(dataset_id):
             un_mov = Metrics.compute_unavoidable_movement(history[revision], history[revision + 1])
             delta_vis = Metrics.compute_delta_vis(history[revision], history[revision + 1])
 
-            diff = delta_vis - un_mov
+            diff = 1 - (delta_vis - un_mov)
             technique_results.append(diff)
 
         data.append(technique_results)
@@ -40,7 +41,7 @@ def unavoidable_matrix(dataset_ids):
                 un_mov = Metrics.compute_unavoidable_movement(history[revision], history[revision + 1])
                 delta_vis = Metrics.compute_delta_vis(history[revision], history[revision + 1])
 
-                diff = delta_vis - un_mov
+                diff = 1 - (delta_vis - un_mov)
                 all_unavoidable = np.append(all_unavoidable, diff.values)
 
             dataset_values.append(all_unavoidable.mean())
@@ -52,23 +53,19 @@ def unavoidable_matrix(dataset_ids):
     MatrixPlot.plot(matrix, dataset_ids, technique_list,
                     shared_cm=False,
                     cell_text=True,
-                    invert_colormap=True,
                     title='Unavoidable')
 
     MatrixPlot.plot(matrix, dataset_ids, technique_list,
                     shared_cm=True,
                     cell_text=True,
-                    invert_colormap=True,
                     title='Unavoidable')
 
     MatrixPlot.plot(matrix, dataset_ids, technique_list,
                     shared_cm=False,
                     cell_text=False,
-                    invert_colormap=True,
                     title='Unavoidable')
 
     MatrixPlot.plot(matrix, dataset_ids, technique_list,
                     shared_cm=True,
                     cell_text=False,
-                    invert_colormap=True,
                     title='Unavoidable')
