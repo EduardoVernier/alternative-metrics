@@ -1,5 +1,8 @@
-import numpy as np
+import matplotlib
+# Force matplotlib to not use any Xwindows backend.
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+import numpy as np
 from scipy import stats
 from matplotlib.colors import Normalize
 from matplotlib.colors import LogNorm
