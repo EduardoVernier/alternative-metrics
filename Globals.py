@@ -10,7 +10,9 @@ acronyms = {
     'SliceAndDice': 'SND',
     'SpiralTreeMap': 'SPI',
     'SquarifiedTreeMap': 'SQR',
-    'StripTreeMap': 'STR'
+    'StripTreeMap': 'STR',
+    'nmac': 'NAC',
+    'nmew': 'NEW'
 }
 
 rectangle_dir = '/home/eduardo/Desktop/baseline-metric/rectangles'

@@ -25,7 +25,6 @@ def plot(matrix, dataset_ids, technique_ids, shared_cm=True, cell_text=False, in
             masked = np.ma.masked_array(matrix, m)
             ax.matshow(masked, cmap=colormap)
 
-
     # Ticks, labels and grids
     ax.set_xticklabels(dataset_ids, rotation='vertical')
     ax.set_xticks(range(len(dataset_ids)), minor=False)
@@ -55,7 +54,7 @@ def plot(matrix, dataset_ids, technique_ids, shared_cm=True, cell_text=False, in
                 text_y = y + jump_y
                 ax.text(text_x, text_y, label, color='black', ha='center', va='center', fontsize=5)
 
-    # fig.tight_layout()
+    fig.tight_layout()
 
     if title is not None:
         # ax.text(x_end / 2, y_end * 1.2, title, color='black', ha='center', va='center', fontsize=12)
