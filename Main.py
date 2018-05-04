@@ -7,6 +7,7 @@ import UnavoidableEnvelope
 import UnavoidableMovement
 import DeltaMetrics
 import AspectRatio
+import MeanBoxplot
 
 action = sys.argv[1]
 
@@ -62,3 +63,8 @@ elif action == 'ar-boxplots':
 elif action == 'ar-matrix':
     dataset_ids = sys.argv[2:]
     AspectRatio.plot_ar_matrix(dataset_ids)
+
+# Mean boxplot of all (3) metric
+elif action == 'mean-boxplot':
+    dataset_id = sys.argv[2]
+    MeanBoxplot.plot_mean_boxplot(dataset_id)

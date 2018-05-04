@@ -67,10 +67,8 @@ def plot(matrix, dataset_ids, technique_ids, shared_cm=True, cell_text=False, in
         save_as_cvs(matrix, dataset_ids, technique_ids, csv_name)
 
         fig_name = title.replace(' ', '').lower()
-        fig_name += '-'
-        fig_name += 'S' if shared_cm else 'I'
-        fig_name += '-'
-        fig_name += 'T' if cell_text else 'NT'
+        fig_name += '-S' if shared_cm else '-I'
+        fig_name += '-T' if cell_text else '-NT'
         fig_name += '.png'
         fig.savefig(Globals.plot_subdir + fig_name, dpi=500)
 
