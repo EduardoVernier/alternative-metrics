@@ -73,3 +73,11 @@ for d in $(cat sw_datasets.txt);
     python3 Main.py ar-boxplots $d; 
     done;
 ```
+
+### Mean of 3 stability metrics
+```
+for d in $(cat sw_datasets.txt); 
+    do echo $d; 
+    python3 Main.py mean-boxplots $d; 
+    done;
+```

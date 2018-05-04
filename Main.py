@@ -65,6 +65,6 @@ elif action == 'ar-matrix':
     AspectRatio.plot_ar_matrix(dataset_ids)
 
 # Mean boxplot of all (3) metric
-elif action == 'mean-boxplot':
+elif action == 'mean-boxplots':
     dataset_id = sys.argv[2]
     MeanBoxplot.plot_mean_boxplot(dataset_id)

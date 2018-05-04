@@ -64,8 +64,12 @@ def delta_ratio_boxplots(dataset_id):
         data.append(technique_data)
 
     TimeBoxplot.plot(data, technique_list,
-                     title="Delta Ratio - " + dataset_id,
-                     filename=Globals.plot_subdir + 'deltaratio-' + dataset_id + '.png')
+                     title="Delta Ratio - " + dataset_id)
+
+    TimeBoxplot.plot(data, technique_list,
+                     median_sorted=True,
+                     title="Delta Ratio - " + dataset_id)
+
 
 
 #  mod = 1 - abs(delta_vis - delta_data)
@@ -122,5 +126,8 @@ def delta_diff_boxplots(dataset_id):
         data.append(technique_data)
 
     TimeBoxplot.plot(data, technique_list,
-                     title="Delta diff - " + dataset_id,
-                     filename=Globals.plot_subdir + 'deltadiff-' + dataset_id + '.png')
+                     title="Delta Diff - " + dataset_id)
+
+    TimeBoxplot.plot(data, technique_list,
+                     median_sorted=True,
+                     title="Delta Diff - " + dataset_id)

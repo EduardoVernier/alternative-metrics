@@ -26,8 +26,11 @@ def plot_time_boxplot(dataset_id):
         data.append(technique_results)
 
     TimeBoxplot.plot(data, technique_list,
-                     title='Unavoidable movement',
-                     filename=Globals.plot_subdir + 'unavoidable-' + dataset_id + '.png')
+                     title="Unavoidable Movement - " + dataset_id)
+
+    TimeBoxplot.plot(data, technique_list,
+                     median_sorted=True,
+                     title="Unavoidable Movement - " + dataset_id)
 
 
 def unavoidable_matrix(dataset_ids):
