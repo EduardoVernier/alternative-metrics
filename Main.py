@@ -68,3 +68,6 @@ elif action == 'ar-matrix':
 elif action == 'mean-boxplots':
     dataset_id = sys.argv[2]
     MeanBoxplot.plot_mean_boxplot(dataset_id)
+
+else:
+    print('Invalid command. See the readme file.')

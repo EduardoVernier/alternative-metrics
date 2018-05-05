@@ -33,8 +33,8 @@ def plot(matrix, dataset_ids, technique_ids, shared_cm=True, cell_text=False, in
     ax.set_xticks(range(len(dataset_ids)), minor=False)
     ax.set_yticklabels([Globals.acronyms[t] for t in technique_ids])
     ax.set_yticks(range(len(technique_ids)), minor=False)
-    ax.set_xticks([x - 0.5 for x in plt.gca().get_xticks()][1:], minor='true')
-    ax.set_yticks([y - 0.5 for y in plt.gca().get_yticks()][1:], minor='true')
+    ax.set_xticks([x - 0.5 for x in plt.gca().get_xticks()][1:], minor=True)
+    ax.set_yticks([y - 0.5 for y in plt.gca().get_yticks()][1:], minor=True)
     plt.grid(which='minor', color='#999999', linestyle='-', linewidth=1)
     ax.tick_params(axis=u'both', which=u'both', length=0)
 
