@@ -8,6 +8,7 @@ import UnavoidableMovement
 import DeltaMetrics
 import AspectRatio
 import MeanBoxplot
+import RankTable
 
 action = sys.argv[1]
 
@@ -68,6 +69,10 @@ elif action == 'ar-matrix':
 elif action == 'mean-boxplots':
     dataset_id = sys.argv[2]
     MeanBoxplot.plot_mean_boxplot(dataset_id)
+
+elif action == 'rank-table':
+    csv_paths = sys.argv[2:]
+    RankTable.plot(csv_paths)
 
 else:
     print('Invalid command. See the readme file.')

@@ -81,3 +81,9 @@ for d in $(cat sw_datasets.txt);
     python3 Main.py mean-boxplots $d; 
     done;
 ```
+
+### Rank table
+```
+python3 Main.py rank-table plots/correlation-matrix/pearson.csv plots/delta-diff-matrix/deltadiff.csv plots/delta-ratio-matrix/deltaratio.csv plots/unavoidable-matrix/unavoidable.csv
+python3 Main.py rank-table plots/ar-matrix/aspectratio.csv
+```
