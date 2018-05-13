@@ -17,6 +17,42 @@ def plot(data_all_tech, technique_list, title=None, median_sorted=False, show=Fa
         ax = fig.axes[i]
         ax.set_title(Globals.acronyms[technique_id])
 
+        if median_sorted:  # Don't modify the original data
+            data = np.copy(data_all_tech[i])
+            data = list(data)
+            data.sort(key=lambda x: -np.median(x))
+        else:
+            data = data_all_tech[i]
+
+        bp = ax.boxplot(data, whis=[5, 95], showfliers=False, patch_artist=True, widths=1)
+
+        ax.set_ylim(ymin=-0, ymax=1)
+        ax.set_yticks([0, .25, .5, .75, 1], minor=False)
+        ax.set_yticklabels([0, .25, .5, .75, 1], fontdict=None, minor=False)
+        style_boxplot(bp, fig, ax, len(data) + 1)
+
+    if title is not None:
+        fig.suptitle(title, fontsize=14)
+        fig.subplots_adjust(top=0.95)
+
+        fig_name = title.replace(' ', '').lower()
+        if median_sorted:
+            fig_name += '-S'
+        fig_name += '.png'
+
+        fig.savefig(Globals.plot_subdir + fig_name, dpi=500)
+
+    if show:
+        plt.show()
+
+def plot_with_pearson(data_all_tech, technique_list, pearson, title=None, median_sorted=False, show=False):
+
+    fig, axs = plt.subplots(int(len(technique_list) / 2), 2, sharex=True, sharey=True, figsize=(9, 18))
+    fig.tight_layout()
+
+    for i, technique_id in enumerate(technique_list):
+        ax = fig.axes[i]
+        ax.set_title(Globals.acronyms[technique_id])
 
         if median_sorted:  # Don't modify the original data
             data = np.copy(data_all_tech[i])
@@ -31,6 +67,10 @@ def plot(data_all_tech, technique_list, title=None, median_sorted=False, show=Fa
         ax.set_yticks([0, .25, .5, .75, 1], minor=False)
         ax.set_yticklabels([0, .25, .5, .75, 1], fontdict=None, minor=False)
         style_boxplot(bp, fig, ax, len(data) + 1)
+
+        # (over)plot pearson
+        x = range(len(pearson[i]))
+        ax.scatter(x, pearson[i], color='red', marker='_', linewidth=5, zorder=20)
 
     if title is not None:
         fig.suptitle(title, fontsize=14)
