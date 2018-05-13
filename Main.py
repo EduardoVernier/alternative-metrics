@@ -9,7 +9,7 @@ import DeltaMetrics
 import AspectRatio
 import MeanBoxplot
 import RankTable
-import StarGlyph
+# import StarGlyph
 
 action = sys.argv[1]
 
