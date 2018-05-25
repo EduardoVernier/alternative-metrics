@@ -4,13 +4,14 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.patheffects as pe
 import numpy as np
+import math
 
 from Util import Globals
 
 
 def plot(data_all_tech, technique_list, title=None, median_sorted=False, show=False):
 
-    fig, axs = plt.subplots(int(len(technique_list) / 2), 2, sharex=True, sharey=True, figsize=(9, 18))
+    fig, axs = plt.subplots(math.ceil(len(technique_list) / 2), 2, sharex=True, sharey=True, figsize=(9, 18))
     fig.tight_layout()
 
     for i, technique_id in enumerate(technique_list):

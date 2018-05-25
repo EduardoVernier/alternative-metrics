@@ -4,8 +4,12 @@ from StabilityMetrics import RawMetrics
 from Util import Globals, Parser
 from Visualizations import MatrixPlot, TimeBoxplot
 
-#technique_list = ['SliceAndDice', 'SquarifiedTreeMap']
 technique_list = Parser.list_techniques()
+
+
+# Aspect ratio computation
+def compute_aspect_ratios(t):
+    return t[['w', 'h']].min(axis=1) / t[['w', 'h']].max(axis=1)
 
 
 def plot_time_boxplot(dataset_id):

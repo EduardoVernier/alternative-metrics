@@ -12,7 +12,8 @@ acronyms = {
     'SquarifiedTreeMap': 'SQR',
     'StripTreeMap': 'STR',
     'nmac': 'NAC',
-    'nmew': 'NEW'
+    'nmew': 'NEW',
+    'git' : 'GIT'
 }
 
 rectangle_dir = '/home/eduardo/Desktop/baseline-metric/rectangles'

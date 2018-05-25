@@ -2,7 +2,7 @@ import os
 import sys
 
 from SpatialMetrics import AspectRatio
-from StabilityMetrics import Correlation, DeltaMetrics, UnavoidableEnvelope, UnavoidableMovement
+from StabilityMetrics import Correlation, DeltaMetrics, UnavoidableEnvelope, UnavoidableMovement, ShneidermanWattenberg
 from Util import Globals
 from Visualizations import MeanBoxplot, RankTable, StarGlyph
 
@@ -61,7 +61,7 @@ elif action == 'ar-matrix':
     dataset_ids = sys.argv[2:]
     AspectRatio.plot_ar_matrix(dataset_ids)
 
-# Mean boxplot of all (3) metric
+# Mean boxplot of all (3) metric (VISSOFT)
 elif action == 'mean-boxplots':
     dataset_id = sys.argv[2]
     MeanBoxplot.plot_mean_boxplot(dataset_id)
@@ -77,6 +77,11 @@ elif action == 'rank-table':
 elif action == 'star-glyph':
     csv_paths = sys.argv[2:]
     StarGlyph.plot(csv_paths)
+
+# Shneiderman metric
+elif action == 'shneiderman-boxplots':
+    dataset_id = sys.argv[2]
+    ShneidermanWattenberg.plot_time_boxplot(dataset_id)
 
 else:
     print('Invalid command. See the readme file.')

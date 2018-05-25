@@ -7,7 +7,7 @@ from scipy import stats
 from matplotlib.colors import Normalize
 from matplotlib import cm
 
-from StabilityMetrics import RawMetrics
+from StabilityMetrics import DeltaMetrics
 from Util import Globals, Parser
 from Visualizations import MatrixPlot
 
@@ -29,10 +29,10 @@ def scatter(dataset_id):
         all_delta_data = np.array([])
         all_delta_vis = np.array([])
         for revision in range(len(history) - 1):
-            delta_data = RawMetrics.compute_delta_data(history[revision], history[revision + 1])
+            delta_data = DeltaMetrics.compute_delta_data(history[revision], history[revision + 1])
             all_delta_data = np.append(all_delta_data, delta_data)
 
-            delta_vis = RawMetrics.compute_delta_vis(history[revision], history[revision + 1])
+            delta_vis = DeltaMetrics.compute_delta_vis(history[revision], history[revision + 1])
             all_delta_vis = np.append(all_delta_vis, delta_vis)
 
         # Compute linear regression and draw regression line
@@ -103,10 +103,10 @@ def pearson_matrix(dataset_ids):
             all_delta_data = np.array([])
             all_delta_vis = np.array([])
             for revision in range(len(history) - 1):
-                delta_data = RawMetrics.compute_delta_data(history[revision], history[revision + 1])
+                delta_data = DeltaMetrics.compute_delta_data(history[revision], history[revision + 1])
                 all_delta_data = np.append(all_delta_data, delta_data)
 
-                delta_vis = RawMetrics.compute_delta_vis(history[revision], history[revision + 1])
+                delta_vis = DeltaMetrics.compute_delta_vis(history[revision], history[revision + 1])
                 all_delta_vis = np.append(all_delta_vis, delta_vis)
 
             # Compute linear regression statistics

@@ -22,12 +22,12 @@ def natural_sort(l):
     return sorted(l, key=alphanum_key)
 
 
-def list_techniques():
+def list_techniques(remove_git=True):
     list = natural_sort(os.listdir(Globals.rectangle_dir))
     if 'IncrementalLayoutWithMoves' in list:
         list.remove('IncrementalLayoutWithMoves')
     if 'IncrementalLayoutWithoutMoves' in list:
         list.remove('IncrementalLayoutWithoutMoves')
-    if 'git' in list:
+    if 'git' in list and remove_git:
         list.remove('git')
     return list
