@@ -28,4 +28,6 @@ def list_techniques():
         list.remove('IncrementalLayoutWithMoves')
     if 'IncrementalLayoutWithoutMoves' in list:
         list.remove('IncrementalLayoutWithoutMoves')
+    if 'git' in list:
+        list.remove('git')
     return list
