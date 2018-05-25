@@ -69,3 +69,20 @@ def unavoidable_travel(*args):
         optimum_x = result.x[0]
         # Minimum corner travel is 4 times the minimum point-hyperbole distance
         return point_hyperbole_dist(optimum_x, w0, h0, w1 * h1) * 4
+
+
+# Schneiderman-Wattember metric
+def compute_schneiderman(t0, t1):
+    base_width = (t0['x'] + t0['w']).max()
+    base_height = (t0['y'] + t0['h']).max()
+    # Normalize by sqrt(W^2 + H^2 + W^2 + H^2), where W and H are the base Width and Heights of the canvas
+    norm = math.sqrt(2 * (base_width ** 2) + 2 * (base_height ** 2))
+
+    df = pd.merge(t0, t1, how='inner', left_index=True, right_index=True)
+    df.columns = ['x0', 'y0', 'w0', 'h0', 'x1', 'y1', 'w1', 'h1']
+    return df.apply(lambda r: schneiderman(*list(r)) / norm, axis=1)
+
+
+def schneiderman(*args):
+    x0, y0, w0, h0, x1, y1, w1, h1 = args
+    return math.sqrt((x0 - x1) ** 2 + (y0 - y1) ** 2 + (w0 - w1) ** 2 + (h0 - h1) ** 2)
