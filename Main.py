@@ -1,15 +1,10 @@
-import sys
 import os
+import sys
 
-import Globals
-import Correlation
-import UnavoidableEnvelope
-import UnavoidableMovement
-import DeltaMetrics
-import AspectRatio
-import MeanBoxplot
-import RankTable
-# import StarGlyph
+from SpatialMetrics import AspectRatio
+from StabilityMetrics import Correlation, DeltaMetrics, UnavoidableEnvelope, UnavoidableMovement
+from Util import Globals
+from Visualizations import MeanBoxplot, RankTable, StarGlyph
 
 action = sys.argv[1]
 

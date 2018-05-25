@@ -1,9 +1,8 @@
 from scipy.stats import stats
 
-import Metrics
-import Parser
-import TimeBoxplot
-import Globals
+from StabilityMetrics import RawMetrics
+from Util import Globals, Parser
+from Visualizations import TimeBoxplot
 
 technique_list = Parser.list_techniques()
 #technique_list = ['SliceAndDice', 'SquarifiedTreeMap']
@@ -15,9 +14,9 @@ def plot_mean_boxplot(dataset_id):
         technique_data = []
         history = Parser.parse_rectangles(technique_id, dataset_id)
         for revision in range(len(history) - 1):
-            delta_vis = Metrics.compute_delta_vis(history[revision], history[revision + 1])
-            delta_data = Metrics.compute_delta_data(history[revision], history[revision + 1])
-            un_mov = Metrics.compute_unavoidable_movement(history[revision], history[revision + 1])
+            delta_vis = RawMetrics.compute_delta_vis(history[revision], history[revision + 1])
+            delta_data = RawMetrics.compute_delta_data(history[revision], history[revision + 1])
+            un_mov = RawMetrics.compute_unavoidable_movement(history[revision], history[revision + 1])
 
             ratios = (1 - delta_vis) / (1 - delta_data)
             diffs = 1 - abs(delta_vis - delta_data)
@@ -44,9 +43,9 @@ def plot_mean_boxplot_with_pearson(dataset_id):
         technique_data = []
         history = Parser.parse_rectangles(technique_id, dataset_id)
         for revision in range(len(history) - 1):
-            delta_vis = Metrics.compute_delta_vis(history[revision], history[revision + 1])
-            delta_data = Metrics.compute_delta_data(history[revision], history[revision + 1])
-            un_mov = Metrics.compute_unavoidable_movement(history[revision], history[revision + 1])
+            delta_vis = RawMetrics.compute_delta_vis(history[revision], history[revision + 1])
+            delta_data = RawMetrics.compute_delta_data(history[revision], history[revision + 1])
+            un_mov = RawMetrics.compute_unavoidable_movement(history[revision], history[revision + 1])
 
             ratios = (1 - delta_vis) / (1 - delta_data)
             diffs = 1 - abs(delta_vis - delta_data)
@@ -62,5 +61,5 @@ def plot_mean_boxplot_with_pearson(dataset_id):
         pearson.append(technique_pearson)
 
     TimeBoxplot.plot_with_pearson(data, technique_list, pearson,
-                     title='Mean with Pearson - ' + dataset_id)
+                                  title='Mean with Pearson - ' + dataset_id)
 

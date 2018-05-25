@@ -3,7 +3,7 @@ import matplotlib
 matplotlib.use('Agg')
 import pandas as pd
 
-import Globals
+from Util import Globals
 
 
 def plot(csv_paths):

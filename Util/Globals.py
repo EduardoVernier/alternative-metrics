@@ -16,4 +16,4 @@ acronyms = {
 }
 
 rectangle_dir = '/home/eduardo/Desktop/baseline-metric/rectangles'
-plot_subdir = ''
+plot_subdir = ''  # This is set during runtime based on the argument command

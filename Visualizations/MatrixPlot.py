@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-import Globals
+from Util import Globals
 
 
 def plot(matrix, dataset_ids, technique_ids, shared_cm=True, cell_text=False, invert_colormap=False, title=None, show=False):

@@ -1,10 +1,8 @@
 import numpy as np
 
-import Metrics
-import Parser
-import Globals
-import MatrixPlot
-import TimeBoxplot
+from StabilityMetrics import RawMetrics
+from Util import Globals, Parser
+from Visualizations import MatrixPlot, TimeBoxplot
 
 technique_list = Parser.list_techniques()
 
@@ -19,8 +17,8 @@ def delta_ratio_matrix(dataset_ids):
             history = Parser.parse_rectangles(technique_id, dataset_id)
             all_ratios = np.array([])
             for revision in range(len(history) - 1):
-                delta_vis = Metrics.compute_delta_vis(history[revision], history[revision + 1])
-                delta_data = Metrics.compute_delta_data(history[revision], history[revision + 1])
+                delta_vis = RawMetrics.compute_delta_vis(history[revision], history[revision + 1])
+                delta_data = RawMetrics.compute_delta_data(history[revision], history[revision + 1])
                 ratio = (1 - delta_vis) / (1 - delta_data)
                 all_ratios = np.append(all_ratios, ratio.values)
 
@@ -57,8 +55,8 @@ def delta_ratio_boxplots(dataset_id):
         technique_data = []
         history = Parser.parse_rectangles(technique_id, dataset_id)
         for revision in range(len(history) - 1):
-            delta_vis = Metrics.compute_delta_vis(history[revision], history[revision + 1])
-            delta_data = Metrics.compute_delta_data(history[revision], history[revision + 1])
+            delta_vis = RawMetrics.compute_delta_vis(history[revision], history[revision + 1])
+            delta_data = RawMetrics.compute_delta_data(history[revision], history[revision + 1])
             ratios = (1 - delta_vis) / (1 - delta_data)
             technique_data.append(ratios)
         data.append(technique_data)
@@ -81,8 +79,8 @@ def delta_diff_matrix(dataset_ids):
             history = Parser.parse_rectangles(technique_id, dataset_id)
             all_diffs = np.array([])
             for revision in range(len(history) - 1):
-                delta_vis = Metrics.compute_delta_vis(history[revision], history[revision + 1])
-                delta_data = Metrics.compute_delta_data(history[revision], history[revision + 1])
+                delta_vis = RawMetrics.compute_delta_vis(history[revision], history[revision + 1])
+                delta_data = RawMetrics.compute_delta_data(history[revision], history[revision + 1])
                 diffs = 1 - abs(delta_vis - delta_data)
                 all_diffs = np.append(all_diffs, diffs.values)
 
@@ -119,8 +117,8 @@ def delta_diff_boxplots(dataset_id):
         technique_data = []
         history = Parser.parse_rectangles(technique_id, dataset_id)
         for revision in range(len(history) - 1):
-            delta_vis = Metrics.compute_delta_vis(history[revision], history[revision + 1])
-            delta_data = Metrics.compute_delta_data(history[revision], history[revision + 1])
+            delta_vis = RawMetrics.compute_delta_vis(history[revision], history[revision + 1])
+            delta_data = RawMetrics.compute_delta_data(history[revision], history[revision + 1])
             diffs = 1 - abs(delta_vis - delta_data)
             technique_data.append(diffs)
         data.append(technique_data)

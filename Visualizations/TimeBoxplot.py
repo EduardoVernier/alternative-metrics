@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import matplotlib.patheffects as pe
 import numpy as np
 
-import Globals
+from Util import Globals
 
 
 def plot(data_all_tech, technique_list, title=None, median_sorted=False, show=False):

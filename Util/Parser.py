@@ -1,9 +1,10 @@
 import glob
-import pandas as pd
-import re
 import os
+import re
 
-import Globals
+import pandas as pd
+
+from Util import Globals
 
 
 def parse_rectangles(technique_id, dataset_id):
