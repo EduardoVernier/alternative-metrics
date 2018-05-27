@@ -3,7 +3,7 @@ import numpy as np
 from Util import Globals, Parser
 from Visualizations import MatrixPlot, TimeBoxplot
 
-technique_list = Parser.list_techniques()
+technique_list = Parser.list_techniques(sibgrapi=True)
 
 
 # Aspect ratio computation

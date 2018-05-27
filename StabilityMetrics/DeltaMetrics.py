@@ -5,7 +5,7 @@ import math
 from Util import Globals, Parser
 from Visualizations import MatrixPlot, TimeBoxplot
 
-technique_list = Parser.list_techniques()
+technique_list = Parser.list_techniques(sibgrapi=True)
 
 # delta_vis has the same definition as the normalized corner travel from the vis18 paper
 def compute_delta_vis(t0, t1):
