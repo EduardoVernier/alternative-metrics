@@ -1,6 +1,5 @@
 from scipy.stats import stats
 
-from StabilityMetrics import RawMetrics
 from Util import Globals, Parser
 from Visualizations import TimeBoxplot
 

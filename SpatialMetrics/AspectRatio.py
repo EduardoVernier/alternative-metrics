@@ -1,6 +1,5 @@
 import numpy as np
 
-from StabilityMetrics import RawMetrics
 from Util import Globals, Parser
 from Visualizations import MatrixPlot, TimeBoxplot
 
@@ -18,7 +17,7 @@ def plot_time_boxplot(dataset_id):
         technique_data = []
         history = Parser.parse_rectangles(technique_id, dataset_id)
         for revision in range(len(history)):
-            ratios = RawMetrics.compute_aspect_ratios(history[revision]).tolist()
+            ratios = compute_aspect_ratios(history[revision]).tolist()
             technique_data.append(ratios)
         data.append(technique_data)
 
@@ -38,7 +37,7 @@ def plot_ar_matrix(dataset_ids):
             history = Parser.parse_rectangles(technique_id, dataset_id)
             all_ratios = np.array([])
             for revision in range(len(history) - 1):
-                ratios = RawMetrics.compute_aspect_ratios(history[revision])
+                ratios = compute_aspect_ratios(history[revision])
                 all_ratios = np.append(all_ratios, ratios.values)
 
             dataset_values.append(all_ratios.mean())

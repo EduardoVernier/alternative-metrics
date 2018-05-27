@@ -1,7 +1,6 @@
 import pandas as pd
 import math
 
-from StabilityMetrics import RawMetrics
 from Visualizations import TimeBoxplot
 from Util import Parser
 

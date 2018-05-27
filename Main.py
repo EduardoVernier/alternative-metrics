@@ -2,7 +2,7 @@ import os
 import sys
 
 from SpatialMetrics import AspectRatio
-from StabilityMetrics import Correlation, DeltaMetrics, UnavoidableEnvelope, UnavoidableMovement, ShneidermanWattenberg
+from StabilityMetrics import Correlation, DeltaMetrics, UnavoidableEnvelope, UnavoidableMovement, ShneidermanWattenberg, LocationDrift
 from Util import Globals
 from Visualizations import MeanBoxplot, RankTable, StarGlyph
 
@@ -82,6 +82,13 @@ elif action == 'star-glyph':
 elif action == 'shneiderman-boxplots':
     dataset_id = sys.argv[2]
     ShneidermanWattenberg.plot_time_boxplot(dataset_id)
+
+#TODO implement matrix
+
+elif action == 'drift-matrix':  # No boxplots for this metric
+    dataset_id = sys.argv[2:]
+    LocationDrift.plot_matrix(dataset_id)
+
 
 else:
     print('Invalid command. See the readme file.')
