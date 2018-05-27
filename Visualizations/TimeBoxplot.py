@@ -10,8 +10,10 @@ from Util import Globals
 
 
 def plot(data_all_tech, technique_list, title=None, median_sorted=False, show=False):
-
-    fig, axs = plt.subplots(math.ceil(len(technique_list) / 2), 2, sharex=True, sharey=True, figsize=(9, 18))
+    # How it was for VISSOFT
+    # fig, axs = plt.subplots(math.ceil(len(technique_list) / 2), 2, sharex=True, sharey=True, figsize=(9, 18))
+    # 5 x 3 layout - SIBGRAPI
+    fig, axs = plt.subplots(math.ceil(len(technique_list) / 3), 3, sharex=True, sharey=True, figsize=(10, 8))
     fig.tight_layout()
 
     for i, technique_id in enumerate(technique_list):
@@ -34,7 +36,7 @@ def plot(data_all_tech, technique_list, title=None, median_sorted=False, show=Fa
 
     if title is not None:
         fig.suptitle(title, fontsize=14)
-        fig.subplots_adjust(top=0.95)
+        fig.subplots_adjust(top=0.9)
 
         fig_name = title.replace(' ', '').lower()
         if median_sorted:
@@ -46,8 +48,8 @@ def plot(data_all_tech, technique_list, title=None, median_sorted=False, show=Fa
     if show:
         plt.show()
 
-def plot_with_pearson(data_all_tech, technique_list, pearson, title=None, median_sorted=False, show=False):
 
+def plot_with_pearson(data_all_tech, technique_list, pearson, title=None, median_sorted=False, show=False):
     fig, axs = plt.subplots(int(len(technique_list) / 2), 2, sharex=True, sharey=True, figsize=(9, 18))
     fig.tight_layout()
 
@@ -82,7 +84,7 @@ def plot_with_pearson(data_all_tech, technique_list, pearson, title=None, median
             fig_name += '-S'
         fig_name += '.png'
 
-        fig.savefig(Globals.plot_subdir + fig_name, dpi=500)
+        fig.savefig(Globals.plot_subdir + fig_name, dpi=300)
 
     if show:
         plt.show()

@@ -55,16 +55,19 @@ def plot(matrix, dataset_ids, technique_ids, shared_cm=True, cell_text=False, in
                 label = "{0:.3f}".format(matrix[y_index][x_index]).lstrip('0')
                 text_x = x + jump_x
                 text_y = y + jump_y
-                if invert_colormap:
-                    if matrix[y_index][x_index] > matrix.min() + matrix.max() * .3:
-                        ax.text(text_x, text_y, label, color='white', ha='center', va='center', fontsize=5)
+                if shared_cm:
+                    if invert_colormap:
+                        if matrix[y_index][x_index] > matrix.min() + (matrix.max() - matrix.min()) * .35:
+                            ax.text(text_x, text_y, label, color='white', ha='center', va='center', fontsize=5)
+                        else:
+                            ax.text(text_x, text_y, label, color='black', ha='center', va='center', fontsize=5)
                     else:
-                        ax.text(text_x, text_y, label, color='black', ha='center', va='center', fontsize=5)
+                        if matrix[y_index][x_index] < matrix.min() + (matrix.max() - matrix.min()) * .35:
+                            ax.text(text_x, text_y, label, color='white', ha='center', va='center', fontsize=5)
+                        else:
+                            ax.text(text_x, text_y, label, color='black', ha='center', va='center', fontsize=5)
                 else:
-                    if matrix[y_index][x_index] < matrix.min() + matrix.max() * .05:
-                        ax.text(text_x, text_y, label, color='white', ha='center', va='center', fontsize=5)
-                    else:
-                        ax.text(text_x, text_y, label, color='black', ha='center', va='center', fontsize=5)
+                    ax.text(text_x, text_y, label, color='black', ha='center', va='center', fontsize=5)
 
     fig.tight_layout()
 

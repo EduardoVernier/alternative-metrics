@@ -58,7 +58,5 @@ def plot_matrix(dataset_ids):
     matrix = np.array(matrix).transpose()
 
     MatrixPlot.plot(matrix, dataset_ids, technique_list,
-                    shared_cm=True,
                     cell_text=True,
-                    invert_colormap=False,
                     title='Location Drift')

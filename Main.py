@@ -4,7 +4,8 @@ from matplotlib import rcParams
 rcParams['font.family'] = 'monospace'
 
 from SpatialMetrics import AspectRatio
-from StabilityMetrics import Correlation, DeltaMetrics, UnavoidableEnvelope, UnavoidableMovement, ShneidermanWattenberg, LocationDrift
+from StabilityMetrics import Correlation, DeltaMetrics, UnavoidableEnvelope, UnavoidableMovement, \
+    ShneidermanWattenberg, LocationDrift, RelativePositionChange
 from Util import Globals
 from Visualizations import MeanBoxplot, RankTable, StarGlyph
 
@@ -93,6 +94,15 @@ elif action == 'shneiderman-matrix':
 elif action == 'drift-matrix':  # No boxplots for this metric
     dataset_id = sys.argv[2:]
     LocationDrift.plot_matrix(dataset_id)
+
+# Sondag's Relative Position Change
+elif action == 'rpc-boxplots':
+    dataset_id = sys.argv[2]
+    RelativePositionChange.plot_time_boxplot(dataset_id)
+
+elif action == 'rpc-matrix':
+    dataset_ids = sys.argv[2:]
+    RelativePositionChange.plot_matrix(dataset_ids)
 
 else:
     print('Invalid command. See the readme file.')
