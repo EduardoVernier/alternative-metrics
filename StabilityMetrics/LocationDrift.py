@@ -1,11 +1,10 @@
 import numpy as np
-import pandas as pd
 import math
 
 from Visualizations import MatrixPlot
 from Util import Parser, Globals
 
-technique_list = Parser.list_techniques(False)
+technique_list = Parser.list_techniques(sibgrapi=True)
 
 
 def point_distance(x0, y0, x1, y1):
@@ -59,7 +58,7 @@ def plot_matrix(dataset_ids):
     matrix = np.array(matrix).transpose()
 
     MatrixPlot.plot(matrix, dataset_ids, technique_list,
-                    shared_cm=False,
+                    shared_cm=True,
                     cell_text=True,
                     invert_colormap=True,
                     title='Location Drift')

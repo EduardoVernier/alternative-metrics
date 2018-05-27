@@ -4,7 +4,7 @@ import math
 from Visualizations import TimeBoxplot
 from Util import Parser
 
-technique_list = Parser.list_techniques(False)
+technique_list = Parser.list_techniques(sibgrapi=True)
 
 
 # Schneiderman-Wattember metric
