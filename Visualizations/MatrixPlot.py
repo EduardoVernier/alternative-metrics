@@ -61,7 +61,7 @@ def plot(matrix, dataset_ids, technique_ids, shared_cm=True, cell_text=False, in
                     else:
                         ax.text(text_x, text_y, label, color='black', ha='center', va='center', fontsize=5)
                 else:
-                    if matrix[y_index][x_index] < matrix.min() + matrix.max() * .3:
+                    if matrix[y_index][x_index] < matrix.min() + matrix.max() * .05:
                         ax.text(text_x, text_y, label, color='white', ha='center', va='center', fontsize=5)
                     else:
                         ax.text(text_x, text_y, label, color='black', ha='center', va='center', fontsize=5)

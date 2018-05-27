@@ -1,8 +1,9 @@
 import pandas as pd
 import math
+import numpy as np
 
-from Visualizations import TimeBoxplot
-from Util import Parser
+from Visualizations import TimeBoxplot, MatrixPlot
+from Util import Parser, Globals
 
 technique_list = Parser.list_techniques(sibgrapi=True)
 
@@ -36,3 +37,25 @@ def plot_time_boxplot(dataset_id):
 
     TimeBoxplot.plot(data, technique_list,
                      title="Shneiderman - " + dataset_id)
+
+
+def plot_matrix(dataset_ids):
+    matrix = []
+    for dataset_id in dataset_ids:
+        dataset_values = []
+        for technique_id in technique_list:
+            history = Parser.parse_rectangles(technique_id, dataset_id)
+            all_ratios = np.array([])
+            for revision in range(len(history) - 1):
+                distances = compute_shneiderman(history[revision], history[revision + 1])
+                all_ratios = np.append(all_ratios, distances.values)
+
+            dataset_values.append(all_ratios.mean())
+            print(Globals.acronyms[technique_id], dataset_id, all_ratios.mean())
+        matrix.append(dataset_values)
+
+    matrix = np.array(matrix).transpose()
+
+    MatrixPlot.plot(matrix, dataset_ids, technique_list,
+                    cell_text=True,
+                    title='Shneiderman-Wattenberg')

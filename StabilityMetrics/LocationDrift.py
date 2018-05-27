@@ -41,7 +41,7 @@ def compute_location_drift(dfs):
             cell_drift += point_distance(x, y, x_mean, y_mean) / (math.sqrt(1000**2 + 1000**2) * active_revisions)
         # Calculate drift over all cells
         mean_drift += cell_drift / n_unique
-    return mean_drift
+    return 1 - mean_drift
 
 
 def plot_matrix(dataset_ids):
@@ -60,5 +60,5 @@ def plot_matrix(dataset_ids):
     MatrixPlot.plot(matrix, dataset_ids, technique_list,
                     shared_cm=True,
                     cell_text=True,
-                    invert_colormap=True,
+                    invert_colormap=False,
                     title='Location Drift')
