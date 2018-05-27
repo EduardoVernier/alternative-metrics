@@ -6,6 +6,7 @@ sudo apt install python3-pip
 pip install --upgrade pip
 python3 -m pip install --user numpy scipy matplotlib ipython jupyter pandas sympy nose
 sudo apt-get install python3-tk
+pip3 install adjustText --user
 ```
 To generate the plots and csv tables use the following commands:
 ### Pearson correlation
@@ -86,4 +87,9 @@ for d in $(cat sw_datasets.txt);
 ```
 python3 Main.py rank-table plots/correlation-matrix/pearson.csv plots/delta-diff-matrix/deltadiff.csv plots/delta-ratio-matrix/deltaratio.csv plots/unavoidable-matrix/unavoidable.csv
 python3 Main.py rank-table plots/ar-matrix/aspectratio.csv
+```
+
+### Star glyph (1st is AR and following are averaged stability metrics)
+```
+python3 Main.py star-glyph plots/ar-matrix/aspectratio.csv plots/delta-diff-matrix/deltadiff.csv plots/delta-ratio-matrix/deltaratio.csv plots/unavoidable-matrix/unavoidable.csv
 ```

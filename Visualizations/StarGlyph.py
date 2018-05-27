@@ -9,7 +9,8 @@ from Util import Globals
 
 def plot(csv_paths):
     fig = plt.figure(figsize=(9, 9))
-    brewer = ['#a6cee3', '#1f78b4', '#b2df8a', '#33a02c', '#fb9a99', '#e31a1c', '#fdbf6f', '#ff7f00', '#cab2d6', '#6a3d9a','#919114', '#b15928']
+    brewer = ['#a6cee3', '#1f78b4', '#b2df8a', '#33a02c', '#fb9a99', '#e31a1c', '#fdbf6f', '#ff7f00', '#cab2d6',
+              '#6a3d9a','#919114', '#b15928', '#ff0066', '#000099', '#cccc00']
 
     # Read dataframes
     ar_df = pd.read_csv(csv_paths[0], index_col=0)
