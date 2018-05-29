@@ -1,2 +1,5 @@
 .idea/
 __pycache__
+plots/
+Notebooks/__pycache__
+Notebooks/.ipynb_checkpoints
