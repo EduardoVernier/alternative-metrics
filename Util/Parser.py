@@ -22,7 +22,7 @@ def natural_sort(l):
     return sorted(l, key=alphanum_key)
 
 
-def list_techniques(sibgrapi=False):
+def list_techniques(sibgrapi=False, sqrgit=False):
     techniques = natural_sort(os.listdir(Globals.rectangle_dir))
     if not sibgrapi:
         if 'IncrementalLayoutWithMoves' in techniques:
@@ -31,6 +31,12 @@ def list_techniques(sibgrapi=False):
             techniques.remove('IncrementalLayoutWithoutMoves')
         if 'git' in techniques:
             techniques.remove('git')
+        if 'sqrgit' in techniques:
+            techniques.remove('sqrgit')
+
+    if sqrgit is False:
+        if 'sqrgit' in techniques:
+            techniques.remove('sqrgit')
 
     # Sort according to acronym
     aux = [(Globals.acronyms[t], t) for t in techniques]

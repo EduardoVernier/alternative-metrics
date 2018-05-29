@@ -10,7 +10,7 @@ from Util import Globals
 def plot(csv_paths):
     fig = plt.figure(figsize=(9, 9))
     brewer = ['#a6cee3', '#1f78b4', '#b2df8a', '#33a02c', '#fb9a99', '#e31a1c', '#fdbf6f', '#ff7f00', '#cab2d6',
-              '#6a3d9a','#919114', '#b15928', '#ff0066', '#000099', '#cccc00']
+              '#6a3d9a','#919114', '#b15928', '#8e1b71', '#ff0066', '#000099', '#cccc00']
 
     # Read dataframes
     ar_df = pd.read_csv(csv_paths[0], index_col=0)
@@ -37,23 +37,3 @@ def plot(csv_paths):
         t = plt.text(st_mean, ar_mean, Globals.acronyms[tech], ha='center', va='center', zorder=11,
                      fontsize=14, fontweight='bold')
         texts.append(t)
-
-    # adjust_text(texts)
-    adjust_text(texts, force_points=1.5, force_text=1.5, expand_points=(1, 1), expand_text=(1.5, .2))
-    plt.savefig(Globals.plot_subdir + 'star.png')
-
-
-
-    # Initialize counter
-    # columns = [str(i+1) for i in range(len(dfs[0].index))]
-    # counter = pd.DataFrame(0, index=dfs[0].index, columns=columns)
-    #
-    # # Count
-    # for df in dfs:
-    #     for column in df.columns:
-    #         sorted = df.sort_values(column, ascending=False)
-    #         for position, tech in enumerate(sorted.index):
-    #             counter[str(position + 1)][tech] += 1
-    #
-    # counter.index = [Globals.acronyms[i] for i in counter.index]
-    # counter.to_csv(Globals.plot_subdir + 'table.csv')

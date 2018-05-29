@@ -92,3 +92,15 @@ def save_as_cvs(matrix, dataset_ids, technique_ids, filename):
     df_dict = dict(zip(dataset_ids, np.array(matrix).transpose()))
     df = pd.DataFrame(data=df_dict, index=technique_ids)
     df.to_csv(filename)
+
+
+def generic_plot(title, csv_path):
+    df = pd.read_csv(csv_path, index_col=0)
+    pass
+
+    dataset_ids = df.columns
+    technique_list = df.index
+    matrix = df.as_matrix()
+    plot(matrix, dataset_ids, technique_list,
+                    title=title,
+                    cell_text=True)

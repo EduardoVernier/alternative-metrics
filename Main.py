@@ -6,8 +6,8 @@ rcParams['font.family'] = 'monospace'
 from SpatialMetrics import AspectRatio
 from StabilityMetrics import Correlation, DeltaMetrics, UnavoidableEnvelope, UnavoidableMovement, \
     ShneidermanWattenberg, LocationDrift, RelativePositionChange
-from Util import Globals
-from Visualizations import MeanBoxplot, RankTable, StarGlyph
+from Util import Globals, RankCounter
+from Visualizations import MeanBoxplot, RankTable, StarGlyph, MatrixPlot
 
 action = sys.argv[1]
 
@@ -103,6 +103,15 @@ elif action == 'rpc-boxplots':
 elif action == 'rpc-matrix':
     dataset_ids = sys.argv[2:]
     RelativePositionChange.plot_matrix(dataset_ids)
+
+elif action == 'generic-matrix':
+    title = sys.argv[2]
+    csv_path = sys.argv[3]
+    MatrixPlot.generic_plot(title, csv_path)
+
+elif action == 'rank-counter':
+    csv_paths = sys.argv[2:]
+    RankCounter.count_to_csv(csv_paths)
 
 else:
     print('Invalid command. See the readme file.')

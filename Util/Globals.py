@@ -13,7 +13,8 @@ acronyms = {
     'StripTreeMap': 'STR',
     'nmac': 'NAC',
     'nmew': 'NEW',
-    'git' : 'GIT'
+    'git': 'GIT',
+    'sqrgit': 'SGI'
 }
 
 rectangle_dir = '/home/eduardo/Desktop/baseline-metric/rectangles'
