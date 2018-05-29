@@ -7,7 +7,7 @@ from SpatialMetrics import AspectRatio
 from StabilityMetrics import Correlation, DeltaMetrics, UnavoidableEnvelope, UnavoidableMovement, \
     ShneidermanWattenberg, LocationDrift, RelativePositionChange
 from Util import Globals, RankCounter
-from Visualizations import MeanBoxplot, RankTable, StarGlyph, MatrixPlot
+from Visualizations import MeanBoxplot, RankTable, StarGlyph, MatrixPlot, CentroidTrail
 
 action = sys.argv[1]
 
@@ -104,14 +104,22 @@ elif action == 'rpc-matrix':
     dataset_ids = sys.argv[2:]
     RelativePositionChange.plot_matrix(dataset_ids)
 
+# Plots any csv, avoiding recomputing a whole metric matrix
 elif action == 'generic-matrix':
     title = sys.argv[2]
     csv_path = sys.argv[3]
     MatrixPlot.generic_plot(title, csv_path)
 
+# Create the rank count for the Google Drive document
 elif action == 'rank-counter':
     csv_paths = sys.argv[2:]
     RankCounter.count_to_csv(csv_paths)
+
+# Centroid Trail Visualization
+elif action == 'centroid-trail':
+    dataset_id = sys.argv[2]
+    CentroidTrail.plot(dataset_id)
+
 
 else:
     print('Invalid command. See the readme file.')
