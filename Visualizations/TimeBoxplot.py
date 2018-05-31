@@ -29,9 +29,6 @@ def plot(data_all_tech, technique_list, title=None, median_sorted=False, show=Fa
 
         bp = ax.boxplot(data, whis=[5, 95], showfliers=False, patch_artist=True, widths=1)
 
-        ax.set_ylim(ymin=-0, ymax=1)
-        ax.set_yticks([0, .25, .5, .75, 1], minor=False)
-        ax.set_yticklabels([0, .25, .5, .75, 1], fontdict=None, minor=False)
         style_boxplot(bp, fig, ax, len(data) + 1)
 
     if title is not None:
@@ -43,7 +40,7 @@ def plot(data_all_tech, technique_list, title=None, median_sorted=False, show=Fa
             fig_name += '-S'
         fig_name += '.png'
 
-        fig.savefig(Globals.plot_subdir + fig_name, dpi=500)
+        fig.savefig(Globals.plot_subdir + fig_name, dpi=300)
 
     if show:
         plt.show()
@@ -66,9 +63,6 @@ def plot_with_pearson(data_all_tech, technique_list, pearson, title=None, median
 
         bp = ax.boxplot(data, whis=[5, 95], showfliers=False, patch_artist=True, widths=1)
 
-        ax.set_ylim(ymin=-0, ymax=1)
-        ax.set_yticks([0, .25, .5, .75, 1], minor=False)
-        ax.set_yticklabels([0, .25, .5, .75, 1], fontdict=None, minor=False)
         style_boxplot(bp, fig, ax, len(data) + 1)
 
         # (over)plot pearson
@@ -122,10 +116,17 @@ def style_boxplot(bp, fig, ax, n_revisions):
     for cap in bp['caps']:
         cap.set(color='#FFFFFF', linewidth=0)
 
+    font = {'family': 'monospace',
+            'weight': 'normal',
+            'size': 8}
+
     # Set only 3 ticks on x
-    ax.set_xticks([1, n_revisions / 2, n_revisions], minor=False)
-    ax.set_xticklabels([1, int(n_revisions / 2), n_revisions], fontdict=None, minor=False)
-    # ax.set_xticklabels(["", "", ""], fontdict=None, minor=False)
+    ax.set_xticks([1, n_revisions / 2, n_revisions-1], minor=False)
+    ax.set_xticklabels([str(1), str(int(n_revisions / 2)), str(n_revisions)], fontdict=font, minor=False)
+
+    ax.set_ylim(ymin=-0, ymax=1)
+    ax.set_yticks([0, .25, .5, .75, 1], minor=False)
+    ax.set_yticklabels(['0', '.25', '.50', '.75', '1.0'], fontdict=font, minor=False)
 
     # Remove extra spines and ticks
     #ax.spines['top'].set_visible(False)

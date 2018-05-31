@@ -67,7 +67,9 @@ elif action == 'ar-matrix':
 # Mean boxplot of all (3) metric (VISSOFT)
 elif action == 'mean-boxplots':
     dataset_id = sys.argv[2]
-    MeanBoxplot.plot_mean_boxplot(dataset_id)
+    if sys.argv[3] is not None:
+        metric_set = sys.argv[3]
+    MeanBoxplot.plot_mean_boxplot(dataset_id, metric_set)
 
 elif action == 'mean-boxplots-with-pearson':
     dataset_id = sys.argv[2]
